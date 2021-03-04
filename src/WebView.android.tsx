@@ -82,6 +82,16 @@ class WebView extends React.Component<AndroidWebViewProps, State> {
 
   webViewRef = React.createRef<NativeWebViewAndroid>();
 
+  /** 
+    * Required to allow createAnimatedComponent() to hook up to the underlying NativeWebView rather than its wrapping View.
+    * @see: Discussion: https://twitter.com/LinguaBrowse/status/1211375582073761799?s=20
+    * @see: Implementation: https://github.com/facebook/react-native/blob/8ddf231306e3bd85be718940d04f11d23b570a62/Libraries/Lists/VirtualizedList.js#L515-L521
+    */
+  getScrollableNode = () => {
+    return this.webViewRef.current;
+  };
+
+
   messagingModuleName = `WebViewMessageHandler${uniqueRef+=1}`;
 
   componentDidMount = () => {
