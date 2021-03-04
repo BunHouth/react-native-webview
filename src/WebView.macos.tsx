@@ -62,6 +62,9 @@ class WebView extends React.Component<MacOSWebViewProps, State> {
 
   webViewRef = React.createRef<NativeWebViewMacOS>();
 
+  getScrollableNode = () => {
+    return this.webViewRef.current;
+  };
   // eslint-disable-next-line react/sort-comp
   getCommands = () => UIManager.getViewManagerConfig('RNCWebView').Commands;
 
